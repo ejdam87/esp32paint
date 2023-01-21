@@ -1,0 +1,4 @@
+// You need to press BOOT button on the board while executing !!!
+// ( MU editor is using this program internally )
+
+esptool.py --chip auto --port < YOUR_PORT > --baud 115200 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size 4MB 0x0 < YOUR .BIN FILE >
