@@ -1,0 +1,11 @@
+Cable connection
+---
+
+LED MATRIX	ESP32
+---
+
+VCC		5V
+GND		GND
+DIN		GPIO13
+CS		GPIO15
+CLK		GPIO14
