@@ -2,7 +2,18 @@ import machine
 
 class Joystick:
 
+    # Maximum voltage produced by joystick
+    ceiling = 4095
+
+    # ( Average ) Voltage rate of joystick located in the middle
+    x_center = 1963
+    y_center = 1968
+
     def __init__( self, vrx: int, vry: int, sw: int ) -> None:
+
+        ## represents current joystick offset ( number between -0.5 and 0.5 )
+        self.dx = 0
+        self.dy = 0
 
         ## Setup analog-digital convertion on vrx and vry pins
         self.jx = machine.ADC( machine.Pin( vrx ) )
@@ -17,3 +28,13 @@ class Joystick:
         self.jy.atten( machine.ADC.ATTN_11DB )
 
         self.js = machine.Pin( sw, machine.Pin.IN, machine.Pin.PULL_UP )
+
+    def update( self ) -> None:
+        jx = self.jx.read( )
+        jy = self.jy.read( )
+
+        self.dx = ( jx - Joystick.x_center ) / Joystick.ceiling
+        self.dy = ( jy - Joystick.y_center ) / Joystick.ceiling
+        self.dx = round( self.dx, 1 )
+        self.dy = round( self.dy, 1 )
+
