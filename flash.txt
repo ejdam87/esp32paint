@@ -2,3 +2,8 @@
 // ( MU editor is using this program internally )
 
 esptool.py --chip auto --port < YOUR_PORT > --baud 115200 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size 4MB 0x0 < YOUR .BIN FILE >
+
+// put / get file to / from board
+// ( you need ampy program )
+
+ampy --port < YOUR SERIAL PORT > get / put < PATH TO FILE >

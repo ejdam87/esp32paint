@@ -1,6 +1,8 @@
 from machine import Pin, SPI
 from led_driver import Max7219
 from joystick import Joystick
+import tracer
+
 
 WIDTH = 32
 HEIGHT = 8
@@ -16,3 +18,5 @@ def observe( j: Joystick ) -> None:
 
     j.update()
     print( j.dx, j.dy )
+
+t = tracer.Tracer( screen, j )
