@@ -1,5 +1,6 @@
 from joystick import Joystick
 from led_driver import Max7219
+import time
 
 def inbound( x: int, y: int, board: Max7219 ) -> bool:
    return 0 <= x < board.width and 0 <= y < board.height
@@ -41,16 +42,17 @@ class Tracer:
 
         return x, y
 
-    def dot_trace( self ) -> None:
+    def dot_trace( self ) -> None:;
 
         x = y = 0
 
         while True:
+            nx, ny = self.update_pos( x, y )
 
-            self.board.fill( 0 )
+            if not self.js.is_pressed( ):
+                self.board.pixel( x, y, 0 )
+
+            x, y = nx, ny
             self.board.pixel( x, y, 1 )
             self.board.show( )
-
-            x, y = self.update_pos( x, y )
-
-
+            time.sleep( 0.5 )

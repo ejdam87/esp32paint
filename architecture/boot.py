@@ -17,6 +17,6 @@ j = Joystick( 34, 35, 17 )
 def observe( j: Joystick ) -> None:
 
     j.update()
-    print( j.dx, j.dy )
+    print( j.dx, j.dy, j.button )
 
 t = tracer.Tracer( screen, j )
