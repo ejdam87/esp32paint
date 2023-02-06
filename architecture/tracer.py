@@ -42,7 +42,7 @@ class Tracer:
 
         return x, y
 
-    def dot_trace( self ) -> None:;
+    def dot_trace( self ) -> None:
 
         x = y = 0
 
